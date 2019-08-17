@@ -3,38 +3,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_barang extends CI_Model {
 
-    public function T_LIST(){
-        $q = $this->db->get('tb_barang');
-        return $q->result();
+    private $_table = 'tb_barang';
+
+    public function T_LIST()
+    {
+        $query = $this->db->get( $this->_table );
+        return $query->result();
     }
-    public function list_cb(){
-        $q = $this->db->select('id_barang,nama')->get('tb_barang');
-        $m = $q->result();
-        $e = array();
-        foreach($m as $x){
-            $e[$x->id_barang] = $x->nama;
+
+    public function list_cb()
+    {
+        $dataBarang = array();
+        $query      = $this->db->select('id_barang, nama')->get( $this->_table );
+        $result     = $query->result();
+
+        foreach($result as $barang){
+            $dataBarang[$barang->id_barang] = $barang->nama;
         }
-        return $e;
+
+        return $dataBarang;
     }
 
-    public function insert($data){
-        $this->db->insert('tb_barang',$data);
+    public function totalItem()
+    {
+        $query = $this->db->count_all( $this->_table );
+        return $query;
     }
 
-    public function hapus($id){
-        $this->db->where('id_barang',$id)->delete('tb_barang');
+    public function insert( $data )
+    {
+        $this->db->insert($this->_table, $data);
     }
 
-    public function get_a($id){
-        $e = $this->db->where('id_barang',$id)->get('tb_barang');
+    public function hapus( $id )
+    {
+        $this->db->where('id_barang', $id)->delete( $this->_table );
+    }
+
+    public function get_a( $id )
+    {
+        $e = $this->db->where('id_barang', $id)->get( $this->_table );
         return $e->row();
     }
 
-    public function edit(){
-        $nama = $this->input->post('nama');
+    public function edit()
+    {
         $id_member = $this->input->post('id_member');
-        $harga = $this->input->post('harga');
-        $ket = $this->input->post('ket');
+        $nama      = $this->input->post('nama');
+        $harga     = $this->input->post('harga');
+        $ket       = $this->input->post('ket');
 
         $data = array(
             'nama' =>$nama,
@@ -42,7 +59,7 @@ class M_barang extends CI_Model {
             'ket'=>$ket
         );
 
-        $this->db->where('id_barang',$id_member)->update('tb_barang',$data);
+        $this->db->where('id_barang', $id_member)->update($this->_table, $data);
     }
 
 }
