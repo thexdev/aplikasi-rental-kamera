@@ -40,15 +40,16 @@ class Barang extends CI_Controller {
 
     public function input()
     {
-        $this->load->view('_partials/layout/base', $this->_pageDetail);
+        $data['pageTitle'] = 'Tambah Data Barang';
+        $this->load->view('_partials/layout/base', array_merge( $data, $this->_pageDetail ));
     }
 
     public function input_act()
     {
         $data = array(
-            'nama' => $this->input->post('nama'),
+            'nama'  => $this->input->post('nama'),
             'harga' => $this->input->post('harga'),
-            'ket' => $this->input->post('ket')
+            'ket'   => $this->input->post('ket')
         );
 
         $this->barang->insert( $data );
@@ -57,7 +58,9 @@ class Barang extends CI_Controller {
 
     public function edit( $id )
     {
-        $data['barang'] = $this->barang->get_a( $id );
+        $data['pageTitle'] = 'Edit Data Barang';
+        $data['barang']    = $this->barang->get_a( $id );
+        
         $this->load->view('_partials/layout/base', array_merge( $data, $this->_pageDetail ));
     }
 

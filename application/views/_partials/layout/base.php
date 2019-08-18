@@ -17,6 +17,7 @@
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-12 col-md-5 col-lg-5">
             <a href="<?php echo site_url(); ?>" class="btn btn-primary rounded-pill shadow mb-3 btn-back"><i class="fa fa-arrow-circle-left mr-1"></i> Back</a>
+            <h5 class="float-right"> <?php echo $pageTitle; ?> </h5>
             <?php switch ( $currentPage ) {
                 case 'barang' :
                     if ( $actionPage == 'input' )

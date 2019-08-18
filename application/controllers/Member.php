@@ -39,7 +39,8 @@ class Member extends CI_Controller {
 
     public function input()
     {
-        $this->load->view('_partials/layout/base', $this->_pageDetail);
+        $data['pageTitle'] = 'Tambah Data Member';
+        $this->load->view('_partials/layout/base', array_merge( $data, $this->_pageDetail ));
     }
 
     public function input_act()
@@ -55,7 +56,9 @@ class Member extends CI_Controller {
 
     public function edit( $id )
     {
-        $data['member'] = $this->member->get_a( $id );
+        $data['pageTitle'] = 'Edit Data Member';
+        $data['member']    = $this->member->get_a( $id );
+        
         $this->load->view('_partials/layout/base', array_merge( $data, $this->_pageDetail ));
     }
 

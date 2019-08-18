@@ -41,8 +41,9 @@ class Sewa extends CI_Controller {
 
     public function input()
     {
-        $data['member'] = $this->member->list_cb();
-        $data['barang'] = $this->barang->list_cb();
+        $data['pageTitle'] = 'Tambah Data Barang';
+        $data['member']    = $this->member->list_cb();
+        $data['barang']    = $this->barang->list_cb();
 
         $this->load->view('_partials/layout/base', array_merge( $data, $this->_pageDetail ));
     }
