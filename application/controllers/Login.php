@@ -11,9 +11,9 @@ class Login extends CI_Controller {
 
     public function index()
     {
-        if (! $this->session->userdata('username'))
+        if (! $this->session->userdata('login'))
         {
-            $this->load->view('login');
+            $this->load->view('login/index');
         } 
         else
         {
@@ -23,13 +23,11 @@ class Login extends CI_Controller {
 
     public function proses()
     {
-        $hasil = $this->user->cek();
+        $data = $this->user->cek();
 
-        if ( $hasil )
+        if ( $data['status'] )
         {
-            $username = $this->input->post('username');
-
-            $this->session->set_userdata(array('username' => $username));
+            $this->session->set_userdata('login', array('username' => $data['user']['username'], 'role' => $data['user']['role']));
             redirect(site_url(), 'refresh');
         }
         else 

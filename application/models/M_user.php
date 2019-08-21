@@ -26,15 +26,14 @@ class M_user extends CI_Model {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
         $query    = $this->db->get_where( $this->_table, array('username' => $username, 'pass' => $password) );
-        // $q = $this->db->where('username',$user)->where('pass', $password)->get('tb_user');
 
         if ( $query->num_rows() > 0 )
         {
-            return true;
+            return array('status' => true, 'user' => $query->row_array());
         }
         else
         {
-            return false;
+            return array('status' => false);
         }
     }
 

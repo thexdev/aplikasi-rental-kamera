@@ -6,10 +6,11 @@ class Dashboard extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->cekLogin();
+		$this->load->library('login');
 		$this->load->model('M_barang', 'barang');
 		$this->load->model('M_member', 'member');
 		$this->load->model('M_sewa', 'sewa');
+		$this->login->cek();
 	}
 
 	public function index()
@@ -30,12 +31,12 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/index', $data);
 	}
 
-	private function ceklogin()
-    {
-        if(! $this->session->userdata('username'))
-        {
-            redirect(site_url(), 'refresh');
-        }
-    }
+	// private function ceklogin()
+ //    {
+ //        if(! $this->session->userdata('login'))
+ //        {
+ //            redirect(site_url(), 'refresh');
+ //        }
+ //    }
 
 }

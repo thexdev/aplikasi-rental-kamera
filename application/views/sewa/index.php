@@ -1,22 +1,11 @@
 <div class="container my-5">
-    <!-- <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="row">  
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                    
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                    <div class="card border-0 bg-light shadow">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="card bg-white border-0 mx-3 shadow">
         <div class="card-body">
             <h3 class="mb-3">Daftar Sewa Aktif</h3>
-            <a href="<?php echo site_url('sewa/input'); ?>" class="btn btn-primary btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
+            <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+                <a href="<?php echo site_url('sewa/input'); ?>" class="btn btn-primary btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
+            <?php endif; ?>
+            <a href="<?php echo site_url('laporan/sewa'); ?>" target="_blank" class="ml-2  btn btn-export mb-4 btn-sm rounded-pill shadow"><i class="fa fa-file-pdf-o mr-1"></i> Export</a href="">
             <div class="table-responsive">
                 <table class="table table-striped dataTable">
                     <thead>
@@ -27,7 +16,9 @@
                             <th scope="col" class="text-nowrap">Jumlah</th>
                             <th scope="col" class="text-nowrap">Tanggal Sewa</th>
                             <th scope="col" class="text-nowrap">Lama</th>
-                            <th scope="col" class="text-nowrap">&nbsp;</th>
+                            <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+                                <th scope="col" class="text-nowrap">&nbsp;</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,9 +31,11 @@
                             <td> <?php echo $item->jml; ?> </td>
                             <td> <?php echo $item->tgl_sewa; ?> </td>
                             <td> <?php echo $item->lama; ?> Hari</td>
-                            <td>
-                                <a href="<?php echo site_url('sewa/kembali/' . $item->id_sewa); ?>" class="btn btn-primary btn-sm">Kembalikan</a>
-                            </td>
+                            <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+                                <td>
+                                    <a href="<?php echo site_url('sewa/kembali/' . $item->id_sewa); ?>" class="btn btn-primary btn-sm">Kembalikan</a>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                     <?php $counter++; ?>
                     <?php endforeach; ?>

@@ -14,8 +14,9 @@ class Barang extends CI_Controller {
             'actionPage'  => $this->uri->segment(2), // Method
         );
 
+        $this->load->library('login');
         $this->load->model( 'M_barang', 'barang' );
-        $this->ceklogin();
+        $this->login->cek();
     }
 
     public function index()
@@ -24,13 +25,13 @@ class Barang extends CI_Controller {
          $this->load->view('barang/index', $data);
     }
 
-    private function ceklogin()
-    {
-        if (! $this->session->userdata('username'))
-        {
-            redirect('login');
-        }
-    }
+    // private function ceklogin()
+    // {
+    //     if (! $this->session->userdata('username'))
+    //     {
+    //         redirect('login');
+    //     }
+    // }
 
     public function hapus( $id )
     {

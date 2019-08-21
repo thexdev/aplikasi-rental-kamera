@@ -8,24 +8,26 @@ class Sewa extends CI_Controller {
 	public function __construct()
 	{
         parent::__construct();
-        $this->ceklogin();
          $this->_pageDetail = array(
             'currentPage' => $this->uri->segment(1), // Controller
             'actionPage'  => $this->uri->segment(2), // Method
         );
+
+        $this->load->library('login');
 		$this->load->model('M_sewa', 'sewa');
         $this->load->model('M_member', 'member');
         $this->load->model('M_barang', 'barang');
         $this->load->helper('form');
+        $this->login->cek();
     }
 
-    private function ceklogin()
-    {
-        if (! $this->session->userdata('username'))
-        {
-            redirect('login');
-        }
-    }
+    // private function ceklogin()
+    // {
+    //     if (! $this->session->userdata('username'))
+    //     {
+    //         redirect('login');
+    //     }
+    // }
 
     public function index()
     {

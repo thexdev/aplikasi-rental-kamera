@@ -10,7 +10,15 @@
 							</div>
 							<div class="card-body">
 								<h2>Barang</h2>
-								<p class="lead"><?php echo $totalBarang; ?> <span class="badge badge-success badge-pill ml-0 ml-md-2"><a href="<?php echo site_url('barang/input'); ?>" class="text-white">Tambah Data</a></span></p>
+								<p class="lead"><?php echo $totalBarang; ?>
+								<?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+									<span class="badge badge-success badge-pill ml-0 ml-md-2">
+										<a href="<?php echo site_url('barang/input'); ?>" class="text-white">Tambah Data</a>
+									</span>
+								<?php else : ?>
+									<?php echo null; ?>
+								<?php endif; ?>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -21,7 +29,15 @@
 							</div>
 							<div class="card-body">
 								<h2>Member</h2>
-								<p class="lead"><?php echo $totalMember; ?> <span class="badge badge-success badge-pill ml-0 ml-md-2"><a href="<?php echo site_url('member/input'); ?>" class="text-white">Tambah Data</a></span></p>
+								<p class="lead"><?php echo $totalMember; ?>
+								<?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+									<span class="badge badge-success badge-pill ml-0 ml-md-2">
+										<a href="<?php echo site_url('member/input'); ?>" class="text-white">Tambah Data</a>
+									</span>
+								<?php else : ?>
+									<?php echo null; ?>
+								<?php endif; ?>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -32,7 +48,15 @@
 							</div>
 							<div class="card-body">
 								<h2>Sewa</h2>
-								<p class="lead"><?php echo $totalSewa; ?> <span class="badge badge-success badge-pill ml-0 ml-md-2"><a href="<?php echo site_url('sewa/input'); ?>" class="text-white">Tambah Data</a></span></p>
+								<p class="lead"><?php echo $totalSewa; ?>
+								<?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
+									<span class="badge badge-success badge-pill ml-0 ml-md-2">
+										<a href="<?php echo site_url('sewa/input'); ?>" class="text-white">Tambah Data</a>
+									</span>
+								<?php else : ?>
+									<?php echo null; ?>
+								<?php endif; ?>
+								</p>
 							</div>
 						</div>
 					</div>

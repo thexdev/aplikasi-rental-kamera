@@ -34,4 +34,16 @@ class M_sewa extends CI_Model {
         $this->db->where('id_sewa',$id)->update('tb_sewa',$data);
     }
 
+    public function barangKembali()
+    {
+        $query = $this->db
+                  ->select('tb_sewa.*,tb_barang.nama as nama_barang,tb_member.nama')
+                  ->join('tb_barang','tb_barang.id_barang=tb_sewa.id_barang','LEFT')
+                  ->join('tb_member','tb_member.id_member=tb_sewa.id_member','LEFT')
+                  ->where('tb_sewa.aktif','0')
+                  ->get('tb_sewa');
+
+        return $query->result();
+    }
+
 }

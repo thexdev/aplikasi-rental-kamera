@@ -12,17 +12,19 @@ class Member extends CI_Controller {
             'currentPage' => $this->uri->segment(1), // Controller
             'actionPage'  => $this->uri->segment(2), // Method
         );
-        $this->ceklogin();
+
+        $this->load->library('login');
 		$this->load->model('M_member', 'member');
+        $this->login->cek();
     }
 
-    private function ceklogin()
-    {
-        if (! $this->session->userdata('username'))
-        {
-            redirect(site_url());
-        }
-    }
+    // private function ceklogin()
+    // {
+    //     if (! $this->session->userdata('username'))
+    //     {
+    //         redirect(site_url());
+    //     }
+    // }
 
     public function index()
     {

@@ -35,3 +35,13 @@ div.card.d-flex .card-header {
 	min-width: 114.3px;
 	text-align: center;
 }
+
+.btn-export {
+	background-color: rgba(3, 122, 253, 0.4);
+	color: #fff;
+}
+
+.btn-export:hover {
+	background-color: rgba(3, 122, 253, 0.7);
+	color: #fff;
+}
