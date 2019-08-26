@@ -25,14 +25,6 @@ class Barang extends CI_Controller {
          $this->load->view('barang/index', $data);
     }
 
-    // private function ceklogin()
-    // {
-    //     if (! $this->session->userdata('username'))
-    //     {
-    //         redirect('login');
-    //     }
-    // }
-
     public function hapus( $id )
     {
         $this->barang->hapus( $id );
@@ -47,14 +39,34 @@ class Barang extends CI_Controller {
 
     public function input_act()
     {
+        $config['upload_path']   = './uploads/image';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']      = 1000;
+        $config['max_width']     = 3000;
+        $config['max_height']    = 3000;
         $data = array(
-            'nama'  => $this->input->post('nama'),
-            'harga' => $this->input->post('harga'),
-            'ket'   => $this->input->post('ket')
+            'nama'   => $this->input->post('nama'),
+            'harga'  => $this->input->post('harga'),
+            'ket'    => $this->input->post('ket'),
+            'foto'   => $_FILES['image_file']['name']
         );
 
-        $this->barang->insert( $data );
-        redirect(site_url(),'refresh');
+        $this->load->library('upload', $config);
+        // $this->barang->insert( $data );
+        // redirect(site_url(), 'refresh');
+
+        if ( ! $this->upload->do_upload('image_file'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            redirect(site_url('barang/input'), 'refresh');
+        }
+        else
+        {
+            // $data = array('upload_data' => $this->upload->data());
+            // $this->load->view('upload_success', $data);
+            $this->barang->insert( $data );
+            redirect(site_url(), 'refresh');
+        }
     }
 
     public function edit( $id )
