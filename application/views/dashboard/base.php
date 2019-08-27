@@ -21,7 +21,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 col-lg-2 bg-white d-none d-md-block" id="sidebar">
+            <div class="col-md-3 col-lg-2 bg-dark d-none d-md-block" id="sidebar">
                 <?php $this->load->view('_partials/layout/sidebar'); ?>
             </div>
 

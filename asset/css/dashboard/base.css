@@ -7,7 +7,7 @@ body {
 }
 
 #sidebar .nav-link.active {
-	background-color: #037afd;
+	background-color: rgba(52, 58, 64, .1) /*#037afd*/;
 	font-weight: bolder;
 	color: #fff !important;
 	padding-left: 35px;
@@ -17,12 +17,12 @@ body {
 
 #sidebar .nav-link.active:hover {
 	color: #fff !important;
-	background-color: rgba(3, 122, 253, 0.4);
+	background-color: rgba(52, 58, 64, .1);
 	transition: 0.2s;
 }
 
 #sidebar .nav-link:hover {
-	background-color: rgba(3, 122, 253, 0.4);
+	background-color: rgba(52, 58, 64, .1);
 	font-weight: bolder;
 	color: #fff !important;
 	padding-left: 35px;
@@ -36,12 +36,41 @@ div.card.d-flex .card-header {
 	text-align: center;
 }
 
+.bg-orange-coral {
+	background: #ff9966;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-kimoby {
+	background: #396afc;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2948ff, #396afc);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #2948ff, #396afc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .btn-export {
 	background-color: rgba(3, 122, 253, 0.4);
 	color: #fff;
 }
 
+.bg-subu {
+	background: #0cebeb;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #29ffc6, #20e3b2, #0cebeb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .btn-export:hover {
 	background-color: rgba(3, 122, 253, 0.7);
 	color: #fff;
+}
+
+.btn-danger-alt {
+	background: #ff9966;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(left, #ff5e62, #ff9966);
+	background: -o-linear-gradient(left, #ff5e62, #ff9966);
+	background: linear-gradient(to right, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.highlight .btn:hover {
+	color: #343a40 !important;
 }
