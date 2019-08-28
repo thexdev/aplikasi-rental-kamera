@@ -74,3 +74,8 @@ div.card.d-flex .card-header {
 .highlight .btn:hover {
 	color: #343a40 !important;
 }
+
+.card-body .table-responsive {
+	max-height: 525px !important;
+	overflow-y: auto !important;
+}

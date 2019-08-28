@@ -17,7 +17,8 @@ class M_barang extends CI_Model {
         $query      = $this->db->select('id_barang, nama')->get( $this->_table );
         $result     = $query->result();
 
-        foreach($result as $barang){
+        foreach($result as $barang)
+        {
             $dataBarang[$barang->id_barang] = $barang->nama;
         }
 
@@ -37,29 +38,19 @@ class M_barang extends CI_Model {
 
     public function hapus( $id )
     {
-        $this->db->where('id_barang', $id)->delete( $this->_table );
+        $this->db->delete($this->_table, array('id_barang' => $id));
     }
 
     public function get_a( $id )
     {
-        $e = $this->db->where('id_barang', $id)->get( $this->_table );
-        return $e->row();
+        $query = $this->db->get_where($this->_table, array('id_barang' => $id));
+        return $query->row();
     }
 
-    public function edit()
+    public function edit( $data )
     {
         $id_member = $this->input->post('id_member');
-        $nama      = $this->input->post('nama');
-        $harga     = $this->input->post('harga');
-        $ket       = $this->input->post('ket');
-
-        $data = array(
-            'nama' =>$nama,
-            'harga'=>$harga,
-            'ket'=>$ket
-        );
-
-        $this->db->where('id_barang', $id_member)->update($this->_table, $data);
+        $this->db->update($this->_table, $data, array('id_barang' => $id_member));
     }
 
 }

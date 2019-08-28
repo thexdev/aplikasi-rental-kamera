@@ -15,6 +15,7 @@ class Barang extends CI_Controller {
         );
 
         $this->load->library('login');
+        $this->load->helper('file');
         $this->load->model( 'M_barang', 'barang' );
         $this->login->cek();
     }
@@ -27,7 +28,9 @@ class Barang extends CI_Controller {
 
     public function hapus( $id )
     {
+        $path = realpath(APPPATH . '../uploads/image/' . '/' . $this->barang->get_a( $id )->foto);
         $this->barang->hapus( $id );
+        unlink($path);
         redirect(site_url(), 'refresh');
     }
 
@@ -44,16 +47,15 @@ class Barang extends CI_Controller {
         $config['max_size']      = 1000;
         $config['max_width']     = 3000;
         $config['max_height']    = 3000;
+
         $data = array(
             'nama'   => $this->input->post('nama'),
             'harga'  => $this->input->post('harga'),
             'ket'    => $this->input->post('ket'),
-            'foto'   => $_FILES['image_file']['name']
+            'foto'   => addslashes($_FILES['image_file']['name'])
         );
 
         $this->load->library('upload', $config);
-        // $this->barang->insert( $data );
-        // redirect(site_url(), 'refresh');
 
         if ( ! $this->upload->do_upload('image_file'))
         {
@@ -62,8 +64,6 @@ class Barang extends CI_Controller {
         }
         else
         {
-            // $data = array('upload_data' => $this->upload->data());
-            // $this->load->view('upload_success', $data);
             $this->barang->insert( $data );
             redirect(site_url(), 'refresh');
         }
@@ -79,8 +79,46 @@ class Barang extends CI_Controller {
 
     public function edit_act()
     {
-        $this->barang->edit();
-        redirect(site_url(), 'refresh');
+        $config['upload_path']   = './uploads/image';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']      = 1000;
+        $config['max_width']     = 3000;
+        $config['max_height']    = 3000;
+
+        $this->load->library('upload', $config);
+
+        if (empty($_FILES['image_file']['name']))
+        {
+            $data = array(
+                'nama'  => $this->input->post('nama'),
+                'harga' => $this->input->post('harga'),
+                'ket'   => $this->input->post('ket')
+            );
+
+            $this->barang->edit( $data );
+            redirect(site_url(), 'refresh');
+        }
+        else
+        {
+            $data = array(
+                'nama'  => $this->input->post('nama'),
+                'harga' => $this->input->post('harga'),
+                'ket'   => $this->input->post('ket'),
+                'foto'  => $_FILES['image_file']['name']
+            );
+
+            if ( ! $this->upload->do_upload('image_file'))
+            {
+                $error = array('error' => $this->upload->display_errors());
+                redirect(site_url('barang/edit'), 'refresh');
+            }
+            else
+            {
+                unlink(realpath(APPPATH . '../uploads/image' . '/' . $this->barang->get_a( $this->input->post('id_member') )->foto));
+                $this->barang->edit( $data );
+                redirect(site_url(), 'refresh');
+            }
+        }        
     }
 
 }

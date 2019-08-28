@@ -3,9 +3,9 @@
         <div class="card-body">
             <h3 class="mb-3">Daftar Sewa Aktif</h3>
             <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
-                <a href="<?php echo site_url('sewa/input'); ?>" class="btn btn-primary btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
+                <a href="<?php echo site_url('sewa/input'); ?>" class="btn bg-subu btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
             <?php endif; ?>
-            <a href="<?php echo site_url('laporan/sewa'); ?>" target="_blank" class="ml-2  btn btn-export mb-4 btn-sm rounded-pill shadow"><i class="fa fa-file-pdf-o mr-1"></i> Export</a href="">
+            <a href="<?php echo site_url('laporan/sewa'); ?>" target="_blank" class="ml-2  btn btn-secondary mb-4 btn-sm rounded-pill shadow"><i class="fa fa-file-pdf-o mr-1"></i> Export</a href="">
             <div class="table-responsive">
                 <table class="table table-striped dataTable">
                     <thead>
@@ -33,7 +33,7 @@
                             <td> <?php echo $item->lama; ?> Hari</td>
                             <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
                                 <td>
-                                    <a href="<?php echo site_url('sewa/kembali/' . $item->id_sewa); ?>" class="btn btn-primary btn-sm">Kembalikan</a>
+                                    <a href="<?php echo site_url('sewa/kembali/' . $item->id_sewa); ?>" class="btn bg-subu btn-sm">Kembalikan</a>
                                 </td>
                             <?php endif; ?>
                         </tr>

@@ -5,9 +5,9 @@
                 <div class="card-body">
                     <h3 class="mb-3">Data Member</h3>    
                     <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
-                         <a href="<?php echo site_url('member/input'); ?>" class="btn btn-primary btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
+                         <a href="<?php echo site_url('member/input'); ?>" class="btn bg-kimoby text-white btn-sm mb-4 rounded-pill shadow"><i class="fa fa-plus-circle"></i> Tambah</a>
                     <?php endif; ?>
-                    <a href="<?php echo site_url('laporan/member'); ?>" target="_blank" class="ml-2 btn btn-export mb-4 btn-sm rounded-pill shadow"><i class="fa fa-file-pdf-o mr-1"></i> Export</a href="">
+                    <a href="<?php echo site_url('laporan/member'); ?>" target="_blank" class="ml-2 btn btn-secondary mb-4 btn-sm rounded-pill shadow"><i class="fa fa-file-pdf-o mr-1"></i> Export</a href="">
                     <div class="table-responsive">
                         <table class="table table-striped" id="dataTable">
                             <thead>
@@ -32,8 +32,8 @@
                                     <?php if ( $this->session->userdata('login')['role'] == 'admin' ) : ?>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="<?php echo site_url('member/edit/' . $item->id_member)?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                                <a href="<?=base_url('member/hapus/' . $item->id_member)?>" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i></a>
+                                                <a href="<?php echo site_url('member/edit/' . $item->id_member)?>" class="btn bg-kimoby text-white btn-sm"><i class="fa fa-edit"></i></a>
+                                                <a href="<?=base_url('member/hapus/' . $item->id_member)?>" class="btn bg-kimoby text-white btn-sm"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     <?php endif; ?>

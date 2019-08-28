@@ -30,13 +30,5 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('dashboard/index', $data);
 	}
-
-	// private function ceklogin()
- //    {
- //        if(! $this->session->userdata('login'))
- //        {
- //            redirect(site_url(), 'refresh');
- //        }
- //    }
-
+	
 }
