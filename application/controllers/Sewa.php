@@ -21,14 +21,6 @@ class Sewa extends CI_Controller {
         $this->login->cek();
     }
 
-    // private function ceklogin()
-    // {
-    //     if (! $this->session->userdata('username'))
-    //     {
-    //         redirect('login');
-    //     }
-    // }
-
     public function index()
     {
         $data['sewa'] = $this->sewa->T_LIST();
@@ -65,10 +57,10 @@ class Sewa extends CI_Controller {
         redirect(site_url(), 'refresh');
     }
 
-    public function kembali($id)
+    public function kembali( $id )
     {
         $this->sewa->kembali($id);
-        redirect('sewa','refresh');
+        redirect(site_url(), 'refresh');
     }
     
 }
